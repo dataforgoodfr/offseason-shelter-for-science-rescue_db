@@ -2,8 +2,8 @@ name: Publish Package
 on:
   push:
     branches: [main, 128_db_model_python_package]
-    paths:
-      - 'rescue_api/**'
+    # paths:
+    #   - 'rescue_api/**'
     # tags: ['v*']
 
 jobs:
