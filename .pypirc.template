@@ -1,0 +1,7 @@
+[distutils]
+index-servers = github
+
+[github]
+repository = https://npm.pkg.github.com/ORGANIZATION_NAME
+username = USERNAME
+password = TOKEN

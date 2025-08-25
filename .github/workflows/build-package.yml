@@ -24,6 +24,7 @@ jobs:
       
       - name: Publish to GitHub Packages
         run: |
+          sed 's/ORGANIZATION_NAME/${{ github.repository_owner }}/g; s/USERNAME/${{ github.actor }}/g; s/TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .pypirc.template > ~/.pypirc
           python -m twine upload --repository github dist/*
         env:
           TWINE_USERNAME: ${{ github.actor }}
