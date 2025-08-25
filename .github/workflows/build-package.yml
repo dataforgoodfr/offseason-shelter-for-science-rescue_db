@@ -1,0 +1,25 @@
+name: Publish Package
+on:
+  push:
+    branches: [main, 128_db_model_python_package]
+    paths:
+      - 'rescue_api/**'
+    # tags: ['v*']
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+      
+      - name: Build package
+        run: |
+          python -m build
+      
+      - name: Publish to GitHub Packages
+        run: |
+          python -m twine upload --repository github dist/*
+        env:
+          TWINE_USERNAME: ${{ github.actor }}
+          TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
