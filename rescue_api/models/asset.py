@@ -1,12 +1,11 @@
 from datetime import datetime
 from typing import List
 
-from rescue_api.database import Base
 from sqlalchemy import BigInteger, ForeignKey, text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from rescue_api.database import Base
 from .asset_resource import asset_resource
-from .rescues import rescues
 
 
 class AssetKind(Base):
@@ -39,5 +38,5 @@ class Asset(Base):
     )
 
     # Relationships
-    rescuers: Mapped[List["Rescuer"]] = relationship(secondary=rescues, back_populates="assets")
+    rescuers: Mapped[List["Rescue"]] = relationship(back_populates="asset")
     resources: Mapped[List["Resource"]] = relationship(secondary=asset_resource, back_populates="assets")
