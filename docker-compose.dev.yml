@@ -16,3 +16,7 @@ networks:
   rescue_db:
     name: rescue_db
     driver: bridge
+
+volumes:
+  db:
+    name: rescue_db_db
