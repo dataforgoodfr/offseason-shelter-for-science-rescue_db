@@ -15,7 +15,7 @@ class MvpDownloaderLibrary(Base):
     resource_id: Mapped[int] = mapped_column(ForeignKey("resources.id"))
     dataset_rank: Mapped[int]
     deeplink: Mapped[str]
-    deeplink_file_size: Mapped[int]
+    deeplink_file_size: Mapped[float]
     magnet_link: Mapped[int]
     defective_link_flag: Mapped[bool]
     created_at: Mapped[datetime] = mapped_column(
