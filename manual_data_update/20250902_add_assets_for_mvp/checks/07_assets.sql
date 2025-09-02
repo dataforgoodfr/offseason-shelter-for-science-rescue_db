@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM public.assets WHERE url IN (SELECT url FROM public.mvp_assets);
