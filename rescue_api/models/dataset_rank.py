@@ -3,7 +3,7 @@
 from datetime import datetime
 
 from rescue_api.database import Base
-from sqlalchemy import ForeignKey, text
+from sqlalchemy import ForeignKey, text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 
@@ -21,6 +21,13 @@ class DatasetRank(Base):
     )
     updated_at: Mapped[datetime] = mapped_column(
         server_default=text("CURRENT_TIMESTAMP"), onupdate=text("NOW()")
+    )
+
+    # Unicity constraint on dataset_id and ranking_id
+    __table_args__ = (
+        UniqueConstraint(
+            "dataset_id", "ranking_id", name="dataset_ranks_dataset_id_ranking_id_key"
+        ),
     )
 
     # Relationships
