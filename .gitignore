@@ -184,3 +184,6 @@ temp/
 
 logs/
 output/
+
+# Folder to store data files in development
+data_pipelines/data/
