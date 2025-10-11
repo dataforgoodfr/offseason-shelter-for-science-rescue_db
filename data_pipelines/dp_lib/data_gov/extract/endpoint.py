@@ -75,9 +75,7 @@ class DataGovPackageSearchEndpoint(DataGovEndpoint):
     @property
     def _destination_folder_path(self) -> str:
         now = datetime.now()
-        folder_name = f"data_gov/{self.name}"
-        subfolder_name = f"{now.year}-{now.month}-{now.day}T{now.hour}-{now.minute}-{now.second}"
-        return os.path.join(DATA_DIR, folder_name, subfolder_name)
+        return os.path.join(DATA_DIR, f"data_gov/{self.name}", now.strftime("%Y-%m-%dT%H-%M-%S"))
 
     @staticmethod
     def _write_data_to_json(data: Union[List, Dict], dst_folder_path: str, file_number: int) -> None:

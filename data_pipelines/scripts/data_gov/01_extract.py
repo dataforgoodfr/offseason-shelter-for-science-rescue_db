@@ -1,5 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor
-from data_pipelines.dp_lib.data_gov import OrganizationalDatasetEndpoints
+from data_pipelines.dp_lib.data_gov.extract import OrganizationalDatasetEndpoints
 
 
 organisational_dataset_endpoints = OrganizationalDatasetEndpoints()
