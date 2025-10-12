@@ -21,4 +21,9 @@ def load_data(db_session: Session) -> None:
     )
 
 db_session = next(database.get_db())
-load_data(db_session)
+try:
+    load_data(db_session)
+except Exception as e:
+    raise e
+finally:
+    db_session.close()
