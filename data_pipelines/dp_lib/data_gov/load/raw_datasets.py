@@ -15,6 +15,8 @@ def load_raw_datasets(db_session: Session, data_folder_names: List[str], mode: s
     for data_folder_name in data_folder_names:
         data_folder_path = os.path.join(f"{DATA_DIR}/data_gov", data_folder_name)
         _load_data_from_folder(db_session=db_session, data_folder_path=data_folder_path, mode=mode)
+        organization_code = data_folder_name.replace("package_search_", "")
+        print(f"Organization {organization_code}: data loaded into raw_datasets.")
 
 def _load_data_from_folder(db_session: Session, data_folder_path: str, mode: str = "upsert") -> None:
     latest_created_subfolder_name = _identify_latest_created_subfolder(data_folder_path)
@@ -53,7 +55,6 @@ def _load_data_from_json_file(db_session: Session, filepath: str, mode: str = "u
         raise ValueError(f"The writing mode '{mode}' is incorrect. Please provide 'upsert'.")
 
 def _upsert_table(db_session: Session, data: List[Dict[str, Any]]) -> None:
-    print("Upserting RawDatasets table: starting...")
     insert_statement = insert(RawDatasets).values(data)
     update_statement = insert_statement.on_conflict_do_update(
         index_elements=[RawDatasets.id],
@@ -61,4 +62,3 @@ def _upsert_table(db_session: Session, data: List[Dict[str, Any]]) -> None:
     )
     _ = db_session.execute(update_statement)
     db_session.commit()
-    print("> Upserting RawDatasets table: done!")
