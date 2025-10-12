@@ -1,5 +1,5 @@
 from rescue_api.database import Base
-from sqlalchemy import Table, Column, BigInteger, Integer, ForeignKey, DateTime, UniqueConstraint, text
+from sqlalchemy import Table, Column, BigInteger, Integer, ForeignKey, DateTime, UniqueConstraint, text, Index
 
 
 asset_resource = Table(
@@ -10,5 +10,6 @@ asset_resource = Table(
     Column("resource_id", Integer, ForeignKey("resources.id"), nullable=False),
     Column("created_at", DateTime, server_default=text("CURRENT_TIMESTAMP")),
     Column("updated_at", DateTime, server_default=text("CURRENT_TIMESTAMP"), onupdate=text("NOW()")),
-    UniqueConstraint("asset_id", "resource_id")
+    UniqueConstraint("asset_id", "resource_id"),
+    Index("asset_resource_asset_id_resource_id_idx", "asset_id", "resource_id")
 )

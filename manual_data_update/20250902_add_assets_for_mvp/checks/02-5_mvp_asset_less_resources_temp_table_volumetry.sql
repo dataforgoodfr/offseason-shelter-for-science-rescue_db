@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM public.mvp_asset_less_resources;

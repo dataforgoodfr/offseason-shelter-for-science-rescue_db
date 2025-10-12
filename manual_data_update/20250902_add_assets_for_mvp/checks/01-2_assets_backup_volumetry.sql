@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM public.assets_copy_20250902;

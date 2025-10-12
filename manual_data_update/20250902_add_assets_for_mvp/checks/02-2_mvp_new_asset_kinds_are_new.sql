@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM public.mvp_asset_kinds WHERE name IN (SELECT name FROM public.asset_kinds);
