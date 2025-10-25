@@ -45,6 +45,7 @@ class DataGovPackageSearchEndpoint(DataGovEndpoint):
         self.offset = offset
         self.organization_code = organization_code
 
+    # TODO: retry sending a request when the error comes from the server (50X errors), use tenacity?
     def _get_response(self) -> Any:
         response = requests.get(
             url=self.full_url,
@@ -75,12 +76,14 @@ class DataGovPackageSearchEndpoint(DataGovEndpoint):
     @property
     def _destination_folder_path(self) -> str:
         now = datetime.now()
+        # TODO: fix the timestamp so we have for example 2025-10-04T16-00-34 instead of 2025-10-4T16-0-34
         return os.path.join(DATA_DIR, f"data_gov/{self.name}", now.strftime("%Y-%m-%dT%H-%M-%S"))
 
     @staticmethod
     def _write_data_to_json(data: Union[List, Dict], dst_folder_path: str, file_number: int) -> None:
         dst_file_path = os.path.join(dst_folder_path, f"data_{file_number}.json")
         with open(dst_file_path, "w") as fhandle:
+            # TODO; subset the data with only what we need to limit the size of the files
             json.dump(data, fhandle, indent=4)
 
         print(f"Data written at {dst_file_path}")

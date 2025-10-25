@@ -60,6 +60,7 @@ def _load_data_from_json_file(
     if type(data) is not list:
         raise TypeError(f"The data written at {filepath} is not a list.")
 
+    # TODO: move this logic of subsetting data to the extraction step to limit the size of the read files
     data = [
         {
             key: value
