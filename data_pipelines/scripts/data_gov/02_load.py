@@ -14,9 +14,6 @@ def load_data(db_session: Session) -> None:
             "package_search_epa_gov",
             "package_search_hhs_gov",
             "package_search_nasa_gov",
-            # The loading doesn't work locally for noaa surely because
-            # of the large amount of data compared to the other organizations.
-            # TODO: implement some batching on the number of rows to fix that
             "package_search_noaa_gov",
             "package_search_usaid_gov",
             "package_search_usda_gov",
