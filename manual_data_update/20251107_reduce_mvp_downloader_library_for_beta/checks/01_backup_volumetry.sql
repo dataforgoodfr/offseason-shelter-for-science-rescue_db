@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM mvp_downloader_library_backup_20251107;

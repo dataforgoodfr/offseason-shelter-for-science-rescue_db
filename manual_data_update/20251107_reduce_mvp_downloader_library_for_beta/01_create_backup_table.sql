@@ -1,0 +1,1 @@
+CREATE TABLE public.mvp_downloader_library_full_20251107 AS TABLE public.mvp_downloader_library;
