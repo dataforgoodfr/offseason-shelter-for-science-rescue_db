@@ -1,5 +1,8 @@
 from .asset import *  # noqa
 from .asset_resource import *
+
+from .data_gov import *
+
 from .dataset import *  # noqa
 from .dataset_json import *  # noqa
 from .organization import *  # noqa
